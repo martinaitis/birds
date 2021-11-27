@@ -1,7 +1,8 @@
 import React from "react";
+import Page from "./common/Page";
 
 function Admin() {
-  return <div>Admin page</div>;
+  return <Page>Admin page</Page>;
 }
 
 export default Admin;
