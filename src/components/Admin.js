@@ -1,22 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Page from "./common/Page";
-import { getBirdImageURL } from "../database/birds"
+import { uploadBirdImage } from "../database/birds"
 
 function Admin () {
-  const [data, dataSet] = useState(undefined)
+  const [image, setImage] = React.useState();
+  const [name, setName] = React.useState();
 
-  useEffect(() => {
-    async function fetchData(){
-      const birdImageURL = await getBirdImageURL('testBird');
-      dataSet(birdImageURL);
+  const handleImageInput = (event) => {
+    if (event.target.files[0]) {
+      setImage(event.target.files[0]);
     }
-    fetchData();
-  }, [])
+  };
 
   return (
     <Page>
       Admin page
-      <img src={data} alt="testBird" width="100" height="100"/> 
+
+      <input type="file" onChange={handleImageInput}/>
+      <button onClick={() => uploadBirdImage(image, name)}>Upload</button>
+
+      <input value={name} onChange={e => setName(e.target.value)} type='text' />
     </Page>
   )
 }
