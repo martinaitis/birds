@@ -1,6 +1,6 @@
 import React from "react";
 import Page from "./common/Page";
-import { uploadBirdImage } from "../database/birds"
+import { uploadBirdImage } from "../firebase/birds"
 
 function Admin () {
   const [image, setImage] = React.useState();
@@ -15,7 +15,6 @@ function Admin () {
   return (
     <Page>
       Admin page
-
       <input type="file" onChange={handleImageInput}/>
       <button onClick={() => uploadBirdImage(image, name)}>Upload</button>
 
